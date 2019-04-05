@@ -106,16 +106,14 @@ const deleteList = (req, res) => {
 
 
 const updatePost = (req,res,next) =>{
-    var newPost;
+    // var newPost;
     for(var i = 0; i < posts.length; i++){
-        if(posts[i].name === req.params.name){
-            newPost = posts[i]
+        if(posts[i].name === req.body.id){
+            posts[i].name = req.body.name
         }
     }
-    for(var prop in req.query){
-        newPost[prop] = req.query[prop];
-    }
-    res.status(200).send(newPost);
+    
+    res.status(200).send(posts);
 }
 module.exports = {
     printAllDishes,

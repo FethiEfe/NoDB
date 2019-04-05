@@ -21,7 +21,7 @@ app.post("/api/myTryList", addToMyList)
 app.delete("/api/myTryList/:name", deleteList)
 
 // update informations of dishes on homepage
-app.put("/api/posts/:name", updatePost)
+app.put("/api/posts/", updatePost)
 
 
 app.listen(PORT, () => {
