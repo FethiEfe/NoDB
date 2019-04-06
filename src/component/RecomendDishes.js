@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios"
+import "./RecomendDishes.css"
 
 export default class RecomendDishes extends Component {
     constructor(props) {
@@ -48,43 +49,53 @@ export default class RecomendDishes extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className = "form"onSubmit={this.handleSubmit}>
                 <label>Image</label>
                 <input type="text"
 
                     name="image"
                     value={this.state.image}
                     onChange={this.handleChange}
+                    required
                 />
+                <br />
                 <label>Name</label>
                 <input type="text"
 
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
+                    required
                 />
+                <br />
                 <label>Ingredients</label>
                 <input type="text"
 
                     name="ingredients"
                     value={this.state.ingredients}
                     onChange={this.handleChange}
+                    required
                 />
+                <br />
                 <label>Restaurant</label>
                 <input type="text"
 
                     name="restaurant"
                     value={this.state.restaurant}
                     onChange={this.handleChange}
+                    required
                 />
+                <br />
                 <label>Address</label>
                 <input type="text"
 
                     name="address"
                     value={this.state.address}
                     onChange={this.handleChange}
+                    required
                 />
-                <button type="submit" >Post</button>
+                <br />
+                <button className = "PostButton" type="submit" >Post</button>
             </form>
         )
     }

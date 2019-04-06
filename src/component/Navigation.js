@@ -11,7 +11,7 @@ function Navigation(props){
           props.tab === "dishes" ? (
             <Dishes />
           ) : props.tab === "recommend" ? (
-            <RecomendDishes changeTab = {this.changeTab}/>
+            <RecomendDishes changeTab = {props.changeTab}/>
           ) : props.tab === "try" ? (
             <ToTry />
           ) :

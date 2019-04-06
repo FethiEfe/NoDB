@@ -77,32 +77,35 @@ export default class Dishes extends Component {
         // map through posts array in order to display
         let myPost = this.state.posts.map((element, i) => {
             return (
-                <div className="foodContainer">
-                    <img src={element.img} alt="" />
-                    <h5 onClick={this.toggle} >{element.name}</h5>
-                    {(this.state.show !== false) ? (<input onChange={(e) => this.handleChange(e)} placeholder="Enter new value" />) : null}
+                    <section className = "foodContainer">
+                        <div className= "contonents">
+                            <img src={element.img} alt="" />
+                            <h5 onClick={this.toggle} >{element.name}</h5>
+                            {(this.state.show !== false) ? (<input onChange={(e) => this.handleChange(e)} placeholder="Enter new value" />) : null}
 
-                    <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
-                    {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
+                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
 
-                    <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
-                    {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
+                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
 
-                    <h5 onClick={this.toggle} >Address: {element.address}</h5>
-                    {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={this.toggle} >Address: {element.address}</h5>
+                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
 
-                    <button onClick={() => this.addToList(element)}>Add My List</button>
-                    <button onClick={() => this.updatePost(element)}>Update</button>
+                            <button onClick={() => this.addToList(element)}>Add My List</button>
+                            <button onClick={() => this.updatePost(element)}>Update</button>
 
 
 
-                </div>
+                        </div>
+                    </section>
+                 
 
             )
         })
 
         return (
-            <div className="flexbox">
+            <div className="Body">
 
 
                 {myPost}

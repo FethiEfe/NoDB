@@ -1,14 +1,28 @@
 .foodContainer{
-    border: 1px solid red;
+    border: 3px solid black;
     margin: 30px 20px;
-    width: 30vw;
-    height: 50vh;
+    background-color: rgba(168, 170, 172, 0.644);
+    width: 20vw;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    border-radius: 50px 5px 50px 5px;
     
     
-    
+}
+.contonents{
+    border: 1px solid green;
+    width: 90%;
+    height: 80%;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.foodContainer h5 {
+    margin: 10px;
 }
 
 .foodContainer img {
@@ -16,11 +30,14 @@
     max-height: 150px;
 }
 
-.flexbox{
-    border: 1px solid blue;
+.Body{
+    background-color: rgba(43, 41, 41, 0.288);
+    padding: 0px auto;
+    border: 3px solid purple;
     display: flex;
 	flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-content: space-around;
     
 }

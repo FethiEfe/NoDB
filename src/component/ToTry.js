@@ -63,8 +63,7 @@ export default class ToTry extends Component {
         
         return (
             <div className="flexbox">
-
-                {myList}
+                    {myList}
             </div>
 
         )
