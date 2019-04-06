@@ -1,10 +1,11 @@
-import React ,{Component} from "react";
+import React from "react";
 import Dishes from "./Dishes"
 import ToTry from "./ToTry"
 import RecomendDishes from "./RecomendDishes"
 
 
 function Navigation(props){
+  
     return (
         <div>
         {

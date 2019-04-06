@@ -1,8 +1,9 @@
-import React ,{Component} from "react";
+import React  from "react";
 
 function Button(props){
     return (
-        <div className="navbarImage">
+        // sementic html here
+        <header className="navbarImage">
           <h1>MY VEGETARIAN FOOD</h1>
           <h2>Find or Recommend Vegetarian Dishes in Houston</h2>
           <div className="buttons">
@@ -13,7 +14,7 @@ function Button(props){
             <button className="buttonRecomend"
               onClick={() => props.changeTab("recommend")}>Recommend Dish</button>
           </div>
-        </div> 
+        </header> 
     )
 }
 

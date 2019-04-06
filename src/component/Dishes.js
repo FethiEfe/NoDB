@@ -29,6 +29,9 @@ export default class Dishes extends Component {
                     posts: res.data
                 })
             })
+            .catch(() => {
+                alert('failed to get info from server');
+            })
 
     }
 
@@ -53,9 +56,13 @@ export default class Dishes extends Component {
                 })
 
             })
+            .catch(() => {
+                alert('failed to add');
+                 })
     }
 
     toggle() {
+        // destructuring
         const { show } = this.state;
         this.setState({ show: !show })
     }
@@ -69,6 +76,9 @@ export default class Dishes extends Component {
                     posts: res.data
                 })
             })
+            .catch(() => {
+                alert('failed to update');
+            })
 
 
     }
@@ -77,14 +87,15 @@ export default class Dishes extends Component {
         // map through posts array in order to display
         let myPost = this.state.posts.map((element, i) => {
             return (
-                    <section className = "foodContainer">
+                    // sementic html here
+                    <main className = "foodContainer">
                         <div className= "contonents">
                             <img src={element.img} alt="" />
                             <h5 onClick={this.toggle} >{element.name}</h5>
                             {(this.state.show !== false) ? (<input onChange={(e) => this.handleChange(e)} placeholder="Enter new value" />) : null}
 
                             <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
-                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
 
                             <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
                             {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
@@ -98,20 +109,21 @@ export default class Dishes extends Component {
 
 
                         </div>
-                    </section>
+                    </main>
                  
 
             )
         })
 
         return (
-            <div className="Body">
+            // sementic html here
+            <main className="Body">
 
 
                 {myPost}
 
 
-            </div>
+            </main >
 
         )
     }

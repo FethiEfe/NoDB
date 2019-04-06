@@ -35,6 +35,9 @@ export default class ToTry extends Component {
 
             })
         })
+        .catch(() => {
+            alert('failed to remove');
+             })
     }
 
 
@@ -44,7 +47,7 @@ export default class ToTry extends Component {
 
         let myList = this.state.displayMyList.map((val, index) => {
             return (
-
+                // sementic html here
                 <section>
                     <div className="foodContainer" key={index}>
                         <img src={val.img} alt="" />

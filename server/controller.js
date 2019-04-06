@@ -115,6 +115,7 @@ const updatePost = (req,res,next) =>{
     
     res.status(200).send(posts);
 }
+//destructuring
 module.exports = {
     printAllDishes,
     postDishes,

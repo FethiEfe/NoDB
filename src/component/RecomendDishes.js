@@ -42,6 +42,9 @@ export default class RecomendDishes extends Component {
             .then(response => {
                 alert("Thanks for offering dishes")
                 this.props.changeTab("dishes")
+            .catch(() => {
+                alert('failed to post');
+                 })
             })
 
 

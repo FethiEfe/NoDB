@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express()
+
+//destructuring
+
 const { printAllDishes, postDishes, printMyList, addToMyList, deleteList, updatePost } = require("./controller")
 const PORT = 3001;
 
