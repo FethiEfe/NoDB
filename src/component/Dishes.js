@@ -15,6 +15,7 @@ export default class Dishes extends Component {
             // I put clearInput because everytime i click update button without entering a value, 
             // it was updating it with the value of newInput so in updatePost function, i am updating newInput with empty string
             clearInput: '',
+            id: ""
             
         
         }
@@ -39,6 +40,7 @@ export default class Dishes extends Component {
     }
 
     handleChange(e) {
+        
         this.setState({
             newInput: e.target.value,
             
@@ -65,6 +67,8 @@ export default class Dishes extends Component {
                 alert('failed to add');
                  })
     }
+
+    
 
     toggle() {
         // destructuring
@@ -99,12 +103,13 @@ export default class Dishes extends Component {
                     <main className = "foodContainer">
                         <div className= "contonents">
                             <img src={element.img} alt="" />
-                            <h5 onClick={this.toggle} >{element.name}</h5>
-                            {(this.state.show !== false) ? (<input onChange={(e) => this.handleChange(e)} placeholder="Enter new value" />) : null}
-
+                            <h5 onClick={this.toggle} >{element.name} </h5>
+                            {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} 
+                                                                  placeholder = "Enter new value"/>): null}
+                            
                             <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
                             {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
-
+                            
                             <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
                             {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
 

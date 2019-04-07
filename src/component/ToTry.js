@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
-
+import "./Dishes.css"
 
 export default class ToTry extends Component {
     constructor(props) {
@@ -48,24 +48,29 @@ export default class ToTry extends Component {
         let myList = this.state.displayMyList.map((val, index) => {
             return (
                 // sementic html here
-                <section>
+                
                     <div className="foodContainer" key={index}>
-                        <img src={val.img} alt="" />
-                        <h5 >Name:{val.name}</h5>
-                        <h5>Ingrendients: {val.ingredients}</h5>
-                        <h5>Restaurant: {val.restaurantName}</h5>
-                        <h5>Address: {val.address}</h5>
-                        <button onClick = {() => this.removeList(val)}>Remove</button>
-                         {/* <button onClick = {alert("clicked")}>Remove</button> */}
+
+                        <div className= "contonents" >
+
+                            <img src={val.img} alt="" />
+                            <h5 >Name:{val.name}</h5>
+                            <h5>Ingrendients: {val.ingredients}</h5>
+                            <h5>Restaurant: {val.restaurantName}</h5>
+                            <h5>Address: {val.address}</h5>
+                            <button onClick = {() => this.removeList(val)}>Remove</button>
+                            {/* <button onClick = {alert("clicked")}>Remove</button> */}
+
+                        </div>
                         
                     </div>
-                </section>
+                
             )
             
         })
         
         return (
-            <div className="flexbox">
+            <div className="Body">
                     {myList}
             </div>
 
