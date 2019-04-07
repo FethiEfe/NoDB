@@ -29,7 +29,6 @@ export default class ToTry extends Component {
         axios
         .delete(`/api/myTryList/${val.id}`)
         .then(res => {
-            console.log(res);
             this.setState({
             displayMyList: res.data
 

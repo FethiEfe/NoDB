@@ -11,12 +11,11 @@ export default class Dishes extends Component {
             posts: [],
             myTryList: [],
             show: false,
+            index1: "3",
             newInput: "",
             // I put clearInput because everytime i click update button without entering a value, 
             // it was updating it with the value of newInput so in updatePost function, i am updating newInput with empty string
-            clearInput: '',
-            id: ""
-            
+            clearInput: ''
         
         }
         this.addToList = this.addToList.bind(this)
@@ -40,15 +39,9 @@ export default class Dishes extends Component {
     }
 
     handleChange(e) {
-        
-        this.setState({
-            newInput: e.target.value,
-            
+        this.setState({newInput: e.target.value})
 
-        })
     }
-
-
     // add dishes on my homepage to my try list
     // value is dishes coming from map loop
     addToList(element) {
@@ -70,10 +63,12 @@ export default class Dishes extends Component {
 
     
 
-    toggle() {
+    toggle(id) {
+        
         // destructuring
-        const { show } = this.state;
-        this.setState({ show: !show })
+        const { show,} = this.state;
+        this.setState({ show: !show, 
+                        index1: id})
     }
 
     updatePost(element) {
@@ -97,24 +92,25 @@ export default class Dishes extends Component {
 
     render() {
         // map through posts array in order to display
-        let myPost = this.state.posts.map((element, i) => {
+        let myPost = this.state.posts.map((element, index) => {
             return (
                     // sementic html here
-                    <main className = "foodContainer">
+                    <main key = {element.id}  className = "foodContainer">
                         <div className= "contonents">
                             <img src={element.img} alt="" />
-                            <h5 onClick={this.toggle} >{element.name} </h5>
-                            {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} 
+                            
+                             <h5 onClick={() => this.toggle(index)} >{element.name} </h5>
+                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e) } type='text'required
                                                                   placeholder = "Enter new value"/>): null}
                             
-                            <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
-                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={() => this.toggle(index)} >Ingrendients: {element.ingredients}</h5>
+                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
                             
-                            <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
-                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={() => this.toggle(index)} >Restaurant: {element.restaurantName}</h5>
+                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
 
-                            <h5 onClick={this.toggle} >Address: {element.address}</h5>
-                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
+                            <h5 onClick={() => this.toggle(index)}  >Address: {element.address}</h5>
+                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
 
                             <button onClick={() => this.addToList(element)}>Add My List</button>
                             <button onClick={() => this.updatePost(element)}>Update</button>
