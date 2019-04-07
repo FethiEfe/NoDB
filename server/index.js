@@ -21,7 +21,7 @@ app.get("/api/myTryList", printMyList)
 app.post("/api/myTryList", addToMyList)
 
 // remove dishes from To-Eat List
-app.delete("/api/myTryList/:name", deleteList)
+app.delete("/api/myTryList/:id", deleteList)
 
 // update informations of dishes on homepage
 app.put("/api/posts/", updatePost)

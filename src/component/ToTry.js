@@ -27,7 +27,7 @@ export default class ToTry extends Component {
     
     removeList(val){
         axios
-        .delete(`/api/myTryList/${val.name}`)
+        .delete(`/api/myTryList/${val.id}`)
         .then(res => {
             console.log(res);
             this.setState({

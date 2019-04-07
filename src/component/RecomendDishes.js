@@ -6,6 +6,8 @@ export default class RecomendDishes extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            
+            id: "",
             image: "",
             name: "",
             ingredients: "",
@@ -18,19 +20,22 @@ export default class RecomendDishes extends Component {
 
     //get the information from input
     handleChange(e) {
-
+        let random = Math.floor(Math.random()*1001)
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            id: this.state.id + random,
+           
         })
 
     }
-
+   
     // store input info to server
     handleSubmit(e) {
         e.preventDefault();
 
         axios
             .post("/api/posts", {
+                id: this.state.id,
                 img: this.state.image,
                 name: this.state.name,
                 ingredients: this.state.ingredients,
@@ -50,9 +55,11 @@ export default class RecomendDishes extends Component {
 
 
     }
+    
+
     render() {
         return (
-            <form className = "form"onSubmit={this.handleSubmit}>
+            <form className = "form" onSubmit={this.handleSubmit}>
                 <label>Image</label>
                 <input type="text"
 

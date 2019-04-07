@@ -11,7 +11,10 @@ export default class Dishes extends Component {
             posts: [],
             myTryList: [],
             show: false,
-            name: "",
+            newInput: "",
+            // I put clearInput because everytime i click update button without entering a value, 
+            // it was updating it with the value of newInput so in updatePost function, i am updating newInput with empty string
+            clearInput: '',
             
         
         }
@@ -37,11 +40,13 @@ export default class Dishes extends Component {
 
     handleChange(e) {
         this.setState({
-            name: e.target.value,
+            newInput: e.target.value,
             
 
         })
     }
+
+
     // add dishes on my homepage to my try list
     // value is dishes coming from map loop
     addToList(element) {
@@ -70,10 +75,11 @@ export default class Dishes extends Component {
     updatePost(element) {
         console.log(element)
         axios
-            .put("/api/posts/", { name: this.state.name, id: element.name })
+            .put("/api/posts/", { newInput: this.state.newInput, id: element.id })
             .then(res => {
                 this.setState({
-                    posts: res.data
+                    posts: res.data,
+                    newInput: this.state.clearInput,
                 })
             })
             .catch(() => {
@@ -82,6 +88,8 @@ export default class Dishes extends Component {
 
 
     }
+
+   
 
     render() {
         // map through posts array in order to display
@@ -95,7 +103,7 @@ export default class Dishes extends Component {
                             {(this.state.show !== false) ? (<input onChange={(e) => this.handleChange(e)} placeholder="Enter new value" />) : null}
 
                             <h5 onClick={this.toggle}>Ingrendients: {element.ingredients}</h5>
-                            {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
+                            {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
 
                             <h5 onClick={this.toggle} >Restaurant: {element.restaurantName}</h5>
                             {/* {(this.state.show !== false)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null} */}
