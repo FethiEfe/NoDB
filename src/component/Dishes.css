@@ -13,7 +13,7 @@
     
 }
 .contonents{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 90%;
     height: 80%;
     margin: auto auto;
@@ -28,12 +28,16 @@
 .foodContainer img {
     max-width: 200px;
     max-height: 150px;
+    border: 1px solid black;
+    box-shadow: 8px 8px 10px black;
+    margin-bottom: 5px;
+    
 }
 
 .Body{
     background-color: rgba(43, 41, 41, 0.288);
     padding: 0px auto;
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
     display: flex;
 	flex-direction: row;
     flex-wrap: wrap;

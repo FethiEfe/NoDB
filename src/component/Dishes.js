@@ -75,14 +75,12 @@ export default class Dishes extends Component {
 
 
     updatePost(element) {
-        console.log("element1" + element)
+        
+        
         axios
-            .put("/api/posts/", {
+            .put(`/api/posts?newName=` + this.state.newName +'&newIng=' + this.state.newIng +'&newRes=' + this.state.newRes + '&newAdd=' + this.state.newAdd , {
                 id: element.id,
-                newName: this.state.newName,
-                newIng: this.state.newIng,
-                newRes: this.state.newRes,
-                newAdd: this.state.newAdd
+            
             })
             .then(res => {
                 this.setState({
@@ -93,9 +91,8 @@ export default class Dishes extends Component {
                     newAdd: "",
                     
                 })
-            })
-            .catch(() => {
-                alert('failed to update');
+            }).catch((e) => {
+                console.log(e);
             })
 
 

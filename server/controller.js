@@ -105,14 +105,14 @@ const deleteList = (req, res) => {
 }
 
 
-const updatePost = (req,res,next) =>{
-    // var newPost;
+const updatePost = (req,res) =>{
+    
     for(var i = 0; i < posts.length; i++){
         if(posts[i].id === req.body.id){
-            posts[i].name = req.body.newName,
-            posts[i].ingredients = req.body.newIng,
-            posts[i].restaurantName = req.body.newRes,
-            posts[i].address = req.body.newAdd
+            posts[i].name = req.query.newName,
+            posts[i].ingredients = req.query.newIng,
+            posts[i].restaurantName = req.query.newRes,
+            posts[i].address = req.query.newAdd
            
         }
     }
