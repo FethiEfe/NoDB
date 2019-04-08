@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
 import "./Dishes.css"
-// import MyPost from "./myPost"
-// import Box from './Box'
 
 export default class Dishes extends Component {
     constructor(props) {
@@ -11,19 +9,19 @@ export default class Dishes extends Component {
             posts: [],
             myTryList: [],
             show: false,
-            index1: "3",
-            newInput: "",
-            // I put clearInput because everytime i click update button without entering a value, 
-            // it was updating it with the value of newInput so in updatePost function, i am updating newInput with empty string
-            clearInput: ''
-        
+            index1: "",
+            newName: "",
+            newIng: "",
+            newRes: "",
+            newAdd: "",
         }
         this.addToList = this.addToList.bind(this)
         this.updatePost = this.updatePost.bind(this)
         this.toggle = this.toggle.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
-    // display dishes in server on homepage
+    // display dishes that is in server
     componentDidMount() {
         axios
             .get("/api/posts")
@@ -38,12 +36,8 @@ export default class Dishes extends Component {
 
     }
 
-    handleChange(e) {
-        this.setState({newInput: e.target.value})
-
-    }
-    // add dishes on my homepage to my try list
-    // value is dishes coming from map loop
+    // add dishes to my To-Eat list
+    // element is dishes coming from map loop
     addToList(element) {
 
         axios
@@ -58,27 +52,46 @@ export default class Dishes extends Component {
             })
             .catch(() => {
                 alert('failed to add');
-                 })
+            })
     }
 
-    
 
+    // index1: it prevents input to pop-up on every dishes on my homepage
+    // once i clicked, i am sending index of dishes  into toggle
     toggle(id) {
-        
+
         // destructuring
-        const { show,} = this.state;
-        this.setState({ show: !show, 
-                        index1: id})
+        const { show } = this.state;
+        this.setState({
+                        show: !show,
+                        index1: id
+             })
     }
+
+
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
 
     updatePost(element) {
-        console.log(element)
+        console.log("element1" + element)
         axios
-            .put("/api/posts/", { newInput: this.state.newInput, id: element.id })
+            .put("/api/posts/", {
+                id: element.id,
+                newName: this.state.newName,
+                newIng: this.state.newIng,
+                newRes: this.state.newRes,
+                newAdd: this.state.newAdd
+            })
             .then(res => {
                 this.setState({
                     posts: res.data,
-                    newInput: this.state.clearInput,
+                    newName: "",
+                    newIng: "",
+                    newRes: "",
+                    newAdd: "",
+                    
                 })
             })
             .catch(() => {
@@ -88,38 +101,52 @@ export default class Dishes extends Component {
 
     }
 
-   
+
 
     render() {
         // map through posts array in order to display
         let myPost = this.state.posts.map((element, index) => {
             return (
-                    // sementic html here
-                    <main key = {element.id}  className = "foodContainer">
-                        <div className= "contonents">
-                            <img src={element.img} alt="" />
-                            
-                             <h5 onClick={() => this.toggle(index)} >{element.name} </h5>
-                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e) } type='text'required
-                                                                  placeholder = "Enter new value"/>): null}
-                            
-                            <h5 onClick={() => this.toggle(index)} >Ingrendients: {element.ingredients}</h5>
-                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
-                            
-                            <h5 onClick={() => this.toggle(index)} >Restaurant: {element.restaurantName}</h5>
-                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
+                // sementic html here
+                <main key={element.id} className="foodContainer">
+                    <form className="contonents">
+                        <img src={element.img} alt="" />
 
-                            <h5 onClick={() => this.toggle(index)}  >Address: {element.address}</h5>
-                            {(this.state.show !== false && this.state.index1 ===index)? (<input onChange = {(e) => this.handleChange(e)} placeholder = "Enter new value"/>): null}
+                        <h5 onClick={() => this.toggle(index)} >Name :{element.name} </h5>
+                        {(this.state.show !== false && this.state.index1 === index) ? (<input type="text"
+                                                                                        name="newName"
+                                                                                        value={this.state.newName}
+                                                                                        onChange={this.handleChange}
+                                                                                        placeholder="Edit Name of The Food " required />) : null}
 
-                            <button onClick={() => this.addToList(element)}>Add My List</button>
-                            <button onClick={() => this.updatePost(element)}>Update</button>
+                        <h5 onClick={() => this.toggle(index)} >Ingrendients: {element.ingredients}</h5>
+                        {(this.state.show !== false && this.state.index1 === index) ? (<input type="text"
+                                                                                        name="newIng"
+                                                                                        value={this.state.newIng}
+                                                                                        onChange={this.handleChange}
+                                                                                        placeholder="Edit Ingredients" required />) : null}
+
+                        <h5 onClick={() => this.toggle(index)} >Restaurant: {element.restaurantName}</h5>
+                        {(this.state.show !== false && this.state.index1 === index) ? (<input type="text"
+                                                                                        name="newRes"
+                                                                                        value={this.state.newRes}
+                                                                                        onChange={this.handleChange}
+                                                                                        placeholder="Edit Restaurant's Name" required />) : null}
+
+                        <h5 onClick={() => this.toggle(index)}  >Address: {element.address}</h5>
+                        {(this.state.show !== false && this.state.index1 === index) ? (<input type="text"
+                                                                                        name="newAdd"
+                                                                                        value={this.state.newAdd}
+                                                                                        onChange={this.handleChange} placeholder="Edit Address" required />) : null}
 
 
+                        <button onClick={() => this.addToList(element)}>Add My List</button>
+                        {(this.state.show !== false && this.state.index1 === index) ? <button onClick={() => this.updatePost(element)}>Update</button> : null}
 
-                        </div>
-                    </main>
-                 
+
+                    </form>
+                </main>
+
 
             )
         })
